@@ -35,19 +35,19 @@ class RulerFragment : Fragment() {
 
     private fun changeToINCH() {
         binding.inch.setOnClickListener {
-            //binding.vertical.unitType = RulerView.Unit.INCH
+            binding.vertical.unitType = RulerView.Unit.INCH
             binding.horizontal.unitType = RulerView.Unit.INCH
             binding.horizontal.setDefaultLabelText("اینچ")
-            //binding.vertical.setDefaultLabelText("اینچ")
+            binding.vertical.setDefaultLabelText("اینچ")
         }
     }
 
     private fun changeToCM() {
         binding.cm.setOnClickListener {
-            //binding.vertical.unitType = RulerView.Unit.CM
+            binding.vertical.unitType = RulerView.Unit.CM
             binding.horizontal.unitType = RulerView.Unit.CM
             binding.horizontal.setDefaultLabelText("سانتی متر")
-            //binding.vertical.setDefaultLabelText("سانتی متر")
+            binding.vertical.setDefaultLabelText("سانتی متر")
         }
     }
 }
