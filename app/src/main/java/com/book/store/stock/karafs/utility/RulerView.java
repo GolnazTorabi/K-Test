@@ -197,7 +197,7 @@ public class RulerView extends View {
             Unit.Graduation graduation = pixelsIterator.next();
             float startX = height;
             float startY = (paddingTop + graduation.pixelOffset);
-            float endX = height-(graduation.relativeLength * graduatedScaleBaseLength);
+            float endX = height - (graduation.relativeLength * graduatedScaleBaseLength);
             float endY = startY;
             canvas.drawLine(startY, startX, endY, endX, scalePaint);
 
@@ -207,9 +207,9 @@ public class RulerView extends View {
 
                 canvas.save();
                 canvas.translate(
-                        startX - guideScaleTextSize, startY - scalePaint.measureText(text) / 2);
-                canvas.rotate(-90);
-                canvas.drawText(text, startY, startX, scalePaint);
+                        startY, endX / 2);
+                canvas.rotate(0);
+                canvas.drawText(text, 0, 0, scalePaint);
                 canvas.restore();
             }
         }

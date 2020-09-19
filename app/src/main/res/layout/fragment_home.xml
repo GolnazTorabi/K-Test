@@ -53,11 +53,12 @@
         <com.book.store.stock.karafs.utility.RulerView
             android:id="@+id/horizontal"
             android:layout_width="0dp"
-            android:layout_height="72dp"
+            android:layout_height="96dp"
             android:orientation="horizontal"
             app:backgroundColor="@color/colorPrimary"
             app:labelColor="@android:color/white"
             app:labelTextSize="12sp"
+            android:padding="8dp"
             app:rulerColor="@color/colorAccent"
             app:textColor ="@color/colorAccent"
             app:defaultLabelText="سانتی متر"
