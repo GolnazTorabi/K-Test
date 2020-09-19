@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RulerView">
+        <attr name="unit" format="enum">
+            <enum name="inch" value="0"/>
+            <enum name="cm" value="1"/>
+        </attr>
+
+        <attr name="guideScaleTextSize" format="dimension" />
+        <attr name="graduatedScaleWidth" format="dimension" />
+        <attr name="graduatedScaleBaseLength" format="dimension" />
+        <attr name="scaleColor" format="color" />
+
+        <attr name="pointerRadius" format="dimension" />
+        <attr name="pointerStrokeWidth" format="dimension" />
+        <attr name="pointerColor" format="color" />
+
+        <attr name="labelTextSize" format="dimension" />
+        <attr name="defaultLabelText" format="string" />
+        <attr name="labelColor" format="color" />
+
+        <attr name="backgroundColor" format="color" />
+    </declare-styleable>
+    <declare-styleable name="simpleRulerView">
+        <attr name="highlightColor" format="color|reference" />
+        <attr name="rulerColor" format="color|reference" />
+        <attr name="textColor" format="color|reference" />
+        <attr name="intervalDistance" format="dimension" />
+        <attr name="intervalValue" format="float" />
+        <attr name="maxValue" format="float" />
+        <attr name="minValue" format="float" />
+        <attr name="textSize" format="dimension" />
+        <attr name="rulerLineWidth" format="dimension" />
+        <attr name="retainLength" format="integer"/>
+    </declare-styleable>
+</resources>

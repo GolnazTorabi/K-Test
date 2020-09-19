@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Karafs</string>
+    <string name="title_ruler">Ruler</string>
+    <string name="title_relations">Relations</string>
+    <string name="title_navigation">Navigation</string>
+    <string name="action_settings">تغییر واحد محاسبه</string>
+    <string name="ruler_view_default_text">محاسبه بر اسا دو بند انگشت :)</string>
+</resources>
