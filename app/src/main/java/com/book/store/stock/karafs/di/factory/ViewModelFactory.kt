@@ -4,6 +4,7 @@ import androidx.collection.ArrayMap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.book.store.stock.karafs.di.component.ViewModelSubComponent
+import com.book.store.stock.karafs.ui.relations.RelationViewModel
 import java.util.concurrent.Callable
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -32,5 +33,6 @@ class ViewModelFactory @Inject constructor(viewModelSubComponent: ViewModelSubCo
     }
 
     init {
+        creators[RelationViewModel::class.java] = Callable { viewModelSubComponent!!.relationViewModel() }
     }
 }

@@ -4,9 +4,9 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
-import com.book.store.stock.karafs.data.ApiInterface
 import com.book.store.stock.karafs.data.DB.AppDatabase
 import com.book.store.stock.karafs.data.DB.UserDao
+import com.book.store.stock.karafs.data.net.ApiInterface
 import com.book.store.stock.karafs.data.repository.UserRepository
 import com.book.store.stock.karafs.data.repository.UserRepositoryImpl
 import com.book.store.stock.karafs.di.component.ViewModelSubComponent
@@ -33,13 +33,13 @@ internal class AppModule {
     ): ApiInterface {
         val builder = OkHttpClient.Builder()
         val logging = HttpLoggingInterceptor()
-        logging.level = HttpLoggingInterceptor.Level.BASIC
+        logging.level = HttpLoggingInterceptor.Level.BODY
         builder.interceptors().add(logging)
         builder.connectTimeout(60, TimeUnit.SECONDS)
         builder.readTimeout(60, TimeUnit.SECONDS)
         builder.writeTimeout(60, TimeUnit.SECONDS)
         return Retrofit.Builder()
-            .baseUrl(ApiInterface.base_url)
+            .baseUrl("http://karafsapp.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(builder.build())
             .build()
@@ -58,20 +58,20 @@ internal class AppModule {
         return ViewModelFactory(viewModelSubComponent.build())
     }
 
-  /*  @Singleton
-    @Inject
-    @Provides
-    fun provideLoggingInterceptor(appSharedPreferences: AppSharedPreferences): LoggingInterceptor.Builder {
-        return LoggingInterceptor.Builder()
-            .loggable(BuildConfig.DEBUG)
-            .addHeader("Authorization", appSharedPreferences.getAuthToken())
-            .addHeader("Accept", "application/json")
-            .setLevel(Level.BASIC)
-            .request("Request")
-            .response("Response")
+    /* @Singleton
+     @Inject
+     @Provides
+     fun provideLoggingInterceptor(appSharedPreferences: AppSharedPreferences): LoggingInterceptor.Builder {
+         return LoggingInterceptor.Builder()
+             .loggable(BuildConfig.DEBUG)
+             .addHeader("Authorization", appSharedPreferences.getAuthToken())
+             .addHeader("Accept", "application/json")
+             .setLevel(Level.BASIC)
+             .request("Request")
+             .response("Response")
 
 
-    }*/
+     }*/
 
 
     @Singleton

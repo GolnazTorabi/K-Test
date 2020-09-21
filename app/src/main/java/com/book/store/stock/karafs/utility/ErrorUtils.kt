@@ -1,6 +1,6 @@
 package com.book.store.stock.karafs.utility
 
-import com.book.store.stock.karafs.data.BaseResponse
+import com.book.store.stock.karafs.data.net.BaseResponse
 import org.json.JSONObject
 import retrofit2.Response
 
