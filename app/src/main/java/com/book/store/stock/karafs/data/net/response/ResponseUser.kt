@@ -1,4 +1,4 @@
-package com.book.store.stock.karafs.data.response
+package com.book.store.stock.karafs.data.net.response
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
