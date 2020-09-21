@@ -172,6 +172,7 @@ public class RulerViewVertical extends View {
         return true;
     }
 
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
