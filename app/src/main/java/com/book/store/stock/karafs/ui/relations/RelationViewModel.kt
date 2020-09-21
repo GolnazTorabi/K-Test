@@ -15,6 +15,8 @@ class RelationViewModel @Inject constructor(
     ViewModel() {
     val userStatus = MutableLiveData<UserStatus>()
     val relations = MutableLiveData<java.lang.StringBuilder>()
+    val error = MutableLiveData<String>()
+    private val stringBuilder: StringBuilder? = null
 
     fun getUser() {
         userStatus.value = UserStatus.ShowLoading
@@ -22,7 +24,7 @@ class RelationViewModel @Inject constructor(
             userStatus.value = UserStatus.HideLoading
             when (it.status) {
                 BaseResponse.Status.Success -> showRelations()
-                BaseResponse.Status.BadRequest -> UserStatus.Fail
+                BaseResponse.Status.BadRequest -> error.value = it.message
                 BaseResponse.Status.ServerError -> UserStatus.ServerError
                 BaseResponse.Status.Unauthorized -> UserStatus.UnAuthorized
                 BaseResponse.Status.NoInternet -> UserStatus.NoInternet
@@ -31,7 +33,6 @@ class RelationViewModel @Inject constructor(
     }
 
     private fun showRelations() {
-        var stringBuilder: StringBuilder? = null
         for (i in 0..userDao.getAll().size) {
             relations.value = stringBuilder?.append(userDao.getAll()[i])
         }
@@ -39,7 +40,6 @@ class RelationViewModel @Inject constructor(
 
 
     enum class UserStatus {
-        Fail,
         NoInternet,
         UnAuthorized,
         ServerError,
