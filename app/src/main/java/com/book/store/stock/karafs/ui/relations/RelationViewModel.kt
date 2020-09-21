@@ -32,6 +32,7 @@ class RelationViewModel @Inject constructor(
         }
     }
 
+
     private fun showRelations() {
         for (i in 0..userDao.getAll().size) {
             relations.value = stringBuilder?.append(userDao.getAll()[i])

@@ -42,6 +42,7 @@ class RelationFragment : DaggerFragment() {
     }
 
     private fun getUserRelations() {
+        relationViewModel.getUser()
         relationViewModel.userStatus.observe(viewLifecycleOwner, Observer {
             it.let {
                 when (it) {
@@ -70,7 +71,7 @@ class RelationFragment : DaggerFragment() {
      * set data to edit text
      */
     private fun showRelations(relations: StringBuilder?) {
-
+        binding.relations.text = relations
     }
 
     private fun observeError() {

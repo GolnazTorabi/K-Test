@@ -39,7 +39,7 @@ internal class AppModule {
         builder.readTimeout(60, TimeUnit.SECONDS)
         builder.writeTimeout(60, TimeUnit.SECONDS)
         return Retrofit.Builder()
-            .baseUrl("http://karafsapp.com/")
+            .baseUrl("http://karafsapp.com")
             .addConverterFactory(GsonConverterFactory.create())
             .client(builder.build())
             .build()
