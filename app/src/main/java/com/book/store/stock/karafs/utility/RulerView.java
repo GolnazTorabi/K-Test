@@ -9,7 +9,6 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,8 +18,6 @@ import androidx.annotation.RequiresApi;
 import com.book.store.stock.karafs.R;
 
 import java.util.Iterator;
-
-import static android.content.ContentValues.TAG;
 
 public class RulerView extends View {
 
@@ -42,6 +39,7 @@ public class RulerView extends View {
     private float labelTextSize;
     private String defaultLabelText;
     private int labelColor;
+    private boolean vertical;
 
     private int backgroundColor;
 
@@ -101,7 +99,7 @@ public class RulerView extends View {
         pointerColor = a.getColor(R.styleable.RulerView_pointerColor, 0xFF03070A);
         pointerRadius = a.getDimension(R.styleable.RulerView_pointerRadius, 40);
         pointerStrokeWidth = a.getDimension(R.styleable.RulerView_pointerStrokeWidth, 8);
-
+        vertical = a.getBoolean(R.styleable.RulerView_vertical, true);
         dm = getResources().getDisplayMetrics();
         unit = new Unit(dm.ydpi);
         unit.setType(a.getInt(R.styleable.RulerView_unit, 0));
@@ -182,37 +180,65 @@ public class RulerView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         int width = getWidth();
         int height = getHeight();
         int paddingTop = getPaddingTop();
         int paddingLeft = getPaddingLeft();
+        float startX = 0;
+        float startY = 0;
+        float endX = 0;
+        float endY = 0;
+
+
         // Draw background.
         canvas.drawPaint(backgroundPaint);
-        Log.d(TAG, "onDraw: " + width + height);
 
         // Draw scale.
-        Iterator<Unit.Graduation> pixelsIterator = unit.getPixelIterator(width - paddingLeft);
-        while (pixelsIterator.hasNext()) {
-            Unit.Graduation graduation = pixelsIterator.next();
-            float startX = height;
-            float startY = (paddingTop + graduation.pixelOffset);
-            float endX = height - (graduation.relativeLength * graduatedScaleBaseLength);
-            float endY = startY;
-            canvas.drawLine(startY, startX, endY, endX, scalePaint);
+        if (vertical) {
+            Iterator<Unit.Graduation> pixelsIterator = unit.getPixelIterator(height - paddingTop);
+            while (pixelsIterator.hasNext()) {
+                Unit.Graduation graduation = pixelsIterator.next();
+
+                startX = width - graduation.relativeLength * graduatedScaleBaseLength;
+                startY = paddingTop + graduation.pixelOffset;
+                endX = width;
+                endY = startY;
+                canvas.drawLine(startX, startY, endX, endY, scalePaint);
+                if (graduation.value % 1 == 0) {
+                    String text = (int) graduation.value + "";
+
+                    canvas.save();
+                    canvas.translate(
+                            startX - guideScaleTextSize, startY - scalePaint.measureText(text) / 2);
+                    canvas.rotate(90);
+                    canvas.drawText(text, 0, 0, scalePaint);
+                    canvas.restore();
+                }
+            }
+        } else {
+            Iterator<Unit.Graduation> pixelsIterator = unit.getPixelIterator(width - paddingLeft);
+            while (pixelsIterator.hasNext()) {
+                Unit.Graduation graduation = pixelsIterator.next();
+                startX = height;
+                startY = (paddingTop + graduation.pixelOffset);
+                endX = height - (graduation.relativeLength * graduatedScaleBaseLength);
+                endY = startY;
+                canvas.drawLine(startY, startX, endY, endX, scalePaint);
+                if (graduation.value % 1 == 0) {
+                    String text = (int) graduation.value + "";
+
+                    canvas.save();
+                    canvas.translate(
+                            startY, endX / 2);
+                    canvas.rotate(0);
+                    canvas.drawText(text, 0, 0, scalePaint);
+                    canvas.restore();
+                }
 
 
-            if (graduation.value % 1 == 0) {
-                String text = (int) graduation.value + "";
-
-                canvas.save();
-                canvas.translate(
-                        startY, endX / 2);
-                canvas.rotate(0);
-                canvas.drawText(text, 0, 0, scalePaint);
-                canvas.restore();
             }
         }
+
 
         // Draw active pointers.
         PointF topPointer = null;
