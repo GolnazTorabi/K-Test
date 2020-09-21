@@ -53,6 +53,34 @@ class RelationFragment : DaggerFragment() {
                 }
             }
         })
+        observeError()
+        observeData()
+    }
+
+    /**
+     * Observe Relation Data and call method to set to EditText
+     */
+    private fun observeData() {
+        relationViewModel.relations.observe(viewLifecycleOwner, Observer {
+            showRelations(it)
+        })
+    }
+
+    /**
+     * set data to edit text
+     */
+    private fun showRelations(relations: StringBuilder?) {
+
+    }
+
+    private fun observeError() {
+        relationViewModel.error.observe(viewLifecycleOwner, Observer {
+            showError(it)
+        })
+    }
+
+    private fun showError(error: String?) {
+        Toast.makeText(context, error, Toast.LENGTH_LONG).show()
     }
 
     private fun hideLoading() {
