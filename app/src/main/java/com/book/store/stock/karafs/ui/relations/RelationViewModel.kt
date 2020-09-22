@@ -1,5 +1,7 @@
 package com.book.store.stock.karafs.ui.relations
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.book.store.stock.karafs.data.DB.UserDao
@@ -16,7 +18,7 @@ class RelationViewModel @Inject constructor(
     val userStatus = MutableLiveData<UserStatus>()
     val relations = MutableLiveData<java.lang.StringBuilder>()
     val error = MutableLiveData<String>()
-    private val stringBuilder: StringBuilder? = null
+    private val stringBuilder = StringBuilder()
 
     fun getUser() {
         userStatus.value = UserStatus.ShowLoading
@@ -34,8 +36,8 @@ class RelationViewModel @Inject constructor(
 
 
     private fun showRelations() {
-        for (i in 0..userDao.getAll().size) {
-            relations.value = stringBuilder?.append(userDao.getAll()[i])
+        for (element in userDao.getAll()) {
+            relations.value = stringBuilder.append(element.lastName)
         }
     }
 

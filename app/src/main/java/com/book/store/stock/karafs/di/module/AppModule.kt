@@ -28,9 +28,7 @@ internal class AppModule {
     @Inject
     @Singleton
     @Provides
-    fun provideApiClient(
-        appSharedPreferences: AppSharedPreferences
-    ): ApiInterface {
+    fun provideApiClient(): ApiInterface {
         val builder = OkHttpClient.Builder()
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
@@ -57,21 +55,6 @@ internal class AppModule {
     fun provideViewModelFactory(viewModelSubComponent: ViewModelSubComponent.Builder): ViewModelProvider.Factory {
         return ViewModelFactory(viewModelSubComponent.build())
     }
-
-    /* @Singleton
-     @Inject
-     @Provides
-     fun provideLoggingInterceptor(appSharedPreferences: AppSharedPreferences): LoggingInterceptor.Builder {
-         return LoggingInterceptor.Builder()
-             .loggable(BuildConfig.DEBUG)
-             .addHeader("Authorization", appSharedPreferences.getAuthToken())
-             .addHeader("Accept", "application/json")
-             .setLevel(Level.BASIC)
-             .request("Request")
-             .response("Response")
-
-
-     }*/
 
 
     @Singleton

@@ -51,24 +51,7 @@ class UserRepositoryImpl @Inject constructor(
 
     private fun addToDataBase(response: ResponseUser?) {
         for (i in 0 until response?.size!!) {
-            if (response[i].lastName.contains("-")) {
-                val firstUser =
-                    ResponseUserItem(
-                        null,
-                        response[i].firstName,
-                        response[i].lastName.substringBefore("-")
-                    )
-                userDao.insert(firstUser)
-                val secondUser =
-                    ResponseUserItem(
-                        null,
-                        response[i].firstName,
-                        response[i].lastName.substringAfter("-")
-                    )
-                userDao.insert(secondUser)
-            } else {
-                userDao.insert(response[i])
-            }
+            userDao.insert(response[i])
         }
     }
 }

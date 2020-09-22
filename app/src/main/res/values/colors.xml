@@ -8,4 +8,5 @@
     <color name="colorRulerViewPointer">#070705</color>
     <color name="colorRulerViewLabel">#070705</color>
     <color name="colorRulerViewBackground">#FAC331</color>
+    <color name="text_color">#333333</color>
 </resources>
