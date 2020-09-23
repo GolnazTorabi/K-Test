@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.book.store.stock.karafs.ui.ruler.RulerFragment"
+        android:name="com.test.karafs.ui.ruler.RulerFragment"
         android:label="@string/title_ruler"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.book.store.stock.karafs.ui.relations.RelationFragment"
+        android:name="com.test.karafs.ui.relations.RelationFragment"
         android:label="@string/title_relations"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.book.store.stock.karafs.ui.navigation.NavigationFragment"
+        android:name="com.test.karafs.ui.navigation.NavigationFragment"
         android:label="@string/title_navigation"
         tools:layout="@layout/fragment_notifications" />
 </navigation>
