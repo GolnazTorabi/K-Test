@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.book.store.stock.karafs.databinding.FragmentHomeBinding
 import com.test.karafs.R
+import com.test.karafs.databinding.FragmentHomeBinding
 import com.test.karafs.utility.RulerView
 
 class RulerFragment : Fragment() {
