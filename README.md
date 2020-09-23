@@ -7,6 +7,7 @@ It can be converted to each other.
 Relation finds the relation between people that has similar familyName.
 
 For Ruler, I use https://github.com/rvganesh212/ruler repository and custom that for a horizontal view and Persian words.
+
 ![alt text](https://github.com/GolnazTorabi/K-Test/blob/master/app/sampledata/ruler.png)
 
 For Relation use Room DB and Retrofit to API call.
