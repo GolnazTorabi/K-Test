@@ -11,8 +11,6 @@ import com.book.store.stock.karafs.data.repository.UserRepository
 import com.book.store.stock.karafs.data.repository.UserRepositoryImpl
 import com.book.store.stock.karafs.di.component.ViewModelSubComponent
 import com.book.store.stock.karafs.di.factory.ViewModelFactory
-import com.book.store.stock.karafs.utility.AppSharedPreferences
-import com.book.store.stock.karafs.utility.SharedPreferencesHelper
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -28,9 +26,7 @@ internal class AppModule {
     @Inject
     @Singleton
     @Provides
-    fun provideApiClient(
-        appSharedPreferences: AppSharedPreferences
-    ): ApiInterface {
+    fun provideApiClient(): ApiInterface {
         val builder = OkHttpClient.Builder()
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
@@ -39,7 +35,7 @@ internal class AppModule {
         builder.readTimeout(60, TimeUnit.SECONDS)
         builder.writeTimeout(60, TimeUnit.SECONDS)
         return Retrofit.Builder()
-            .baseUrl("http://karafsapp.com/")
+            .baseUrl("http://karafsapp.com")
             .addConverterFactory(GsonConverterFactory.create())
             .client(builder.build())
             .build()
@@ -58,21 +54,6 @@ internal class AppModule {
         return ViewModelFactory(viewModelSubComponent.build())
     }
 
-    /* @Singleton
-     @Inject
-     @Provides
-     fun provideLoggingInterceptor(appSharedPreferences: AppSharedPreferences): LoggingInterceptor.Builder {
-         return LoggingInterceptor.Builder()
-             .loggable(BuildConfig.DEBUG)
-             .addHeader("Authorization", appSharedPreferences.getAuthToken())
-             .addHeader("Accept", "application/json")
-             .setLevel(Level.BASIC)
-             .request("Request")
-             .response("Response")
-
-
-     }*/
-
 
     @Singleton
     @Provides
@@ -87,10 +68,6 @@ internal class AppModule {
 
     @Provides
     fun provideUserRepository(repo: UserRepositoryImpl): UserRepository = repo
-
-
-    @Provides
-    fun provideSharedPreferences(repo: AppSharedPreferences): SharedPreferencesHelper = repo
 
 
     @Provides

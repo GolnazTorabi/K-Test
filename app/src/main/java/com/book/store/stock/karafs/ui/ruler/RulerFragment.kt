@@ -12,8 +12,6 @@ import com.book.store.stock.karafs.databinding.FragmentHomeBinding
 import com.book.store.stock.karafs.utility.RulerView
 
 class RulerFragment : Fragment() {
-
-    private lateinit var rulerViewModel: RulerViewModel
     private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
@@ -21,8 +19,6 @@ class RulerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        rulerViewModel =
-            ViewModelProvider(this).get(RulerViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         return binding.root
     }

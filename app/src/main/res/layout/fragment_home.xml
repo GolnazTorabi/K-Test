@@ -34,21 +34,25 @@
             app:layout_constraintTop_toBottomOf="@id/cm" />
 
 
-        <com.book.store.stock.karafs.utility.RulerViewVertical
+        <com.book.store.stock.karafs.utility.RulerView
             android:id="@+id/vertical"
-            android:layout_width="72dp"
+            android:layout_width="96dp"
             android:layout_height="0dp"
-            android:padding="4dp"
+            android:orientation="horizontal"
+            android:padding="8dp"
             app:backgroundColor="@color/colorAccent"
             app:defaultLabelText="سانتی متر"
-            app:labelColor="@android:color/black"
+            app:labelColor="@android:color/white"
             app:labelTextSize="12sp"
             app:layout_constraintBottom_toTopOf="@id/horizontal"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:pointerColor="@android:color/white"
+            app:pointerColor="@android:color/black"
             app:pointerRadius="4dp"
-            app:unit="cm" />
+            app:rulerColor="@color/colorAccent"
+            app:textColor="@color/colorAccent"
+            app:unit="cm"
+            app:isVertical="true" />
 
         <com.book.store.stock.karafs.utility.RulerView
             android:id="@+id/horizontal"
@@ -67,6 +71,7 @@
             app:pointerRadius="4dp"
             app:rulerColor="@color/colorAccent"
             app:textColor="@color/colorAccent"
-            app:unit="cm" />
+            app:unit="cm"
+            app:isVertical="false" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
