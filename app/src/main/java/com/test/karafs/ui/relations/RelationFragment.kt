@@ -9,8 +9,9 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.book.store.stock.karafs.databinding.FragmentDashboardBinding
+
 import com.test.karafs.R
+import com.test.karafs.databinding.FragmentDashboardBinding
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
