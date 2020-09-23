@@ -10,7 +10,7 @@ For Ruler, I use [Ruler](https://github.com/rvganesh212/ruler) repository and cu
 
 ![alt text](https://github.com/GolnazTorabi/K-Test/blob/master/app/sampledata/ruler.png)
 
-Relation part use Room DB and Retrofit For getting data from Api.
+i'm using Room DB for Relation part and Retrofit For getting data from Api.
 
 
 ![alt text](https://github.com/GolnazTorabi/K-Test/blob/master/app/sampledata/relations.png)
