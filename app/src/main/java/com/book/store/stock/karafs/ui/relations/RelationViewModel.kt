@@ -4,6 +4,7 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.book.store.stock.karafs.data.DB.ResponseUserItem
 import com.book.store.stock.karafs.data.DB.UserDao
 import com.book.store.stock.karafs.data.net.BaseResponse
 import com.book.store.stock.karafs.data.repository.UserRepository
@@ -16,9 +17,11 @@ class RelationViewModel @Inject constructor(
 ) :
     ViewModel() {
     val userStatus = MutableLiveData<UserStatus>()
-    val relations = MutableLiveData<java.lang.StringBuilder>()
+    val relations = MutableLiveData<String>()
     val error = MutableLiveData<String>()
-    private val stringBuilder = StringBuilder()
+
+    private var result = ""
+
 
     fun getUser() {
         userStatus.value = UserStatus.ShowLoading
@@ -36,9 +39,40 @@ class RelationViewModel @Inject constructor(
 
 
     private fun showRelations() {
-        for (element in userDao.getAll()) {
-            relations.value = stringBuilder.append(element.lastName)
+        getRelations()
+        relations.value = result
+    }
+
+    private fun getRelations() {
+        for (i in userDao.getAll().indices) {
+            var relatedUsers = " "
+            val currentUser: ResponseUserItem = userDao.getAll()[i]
+            for (j in userDao.getAll().indices) {
+                if (i == j) {
+                    continue
+                }
+                val other: ResponseUserItem = userDao.getAll()[j]
+                val otherUserLastName: Array<String> = other.lastName.split("-").toTypedArray()
+                for (k in otherUserLastName.indices) {
+                    if (otherUserLastName[k]
+                            .contains(currentUser.lastName) || currentUser.lastName
+                            .contains(otherUserLastName[k])
+                    ) {
+                        relatedUsers += other.firstName + ", "
+                    }
+                }
+            }
+            if (relatedUsers.isEmpty()) {
+                relatedUsers += "no one"
+            } else {
+                relatedUsers = relatedUsers.substring(0, relatedUsers.length - 2)
+                var reverse = StringBuffer(relatedUsers).reverse().toString()
+                reverse = reverse.replaceFirst(",".toRegex(), "& ")
+                relatedUsers = StringBuffer(reverse).reverse().toString()
+            }
+            result += currentUser.firstName + " is related to " + relatedUsers + "\n"
         }
+
     }
 
 

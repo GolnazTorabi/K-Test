@@ -72,7 +72,7 @@ class RelationFragment : DaggerFragment() {
     /**
      * set data to edit text
      */
-    private fun showRelations(relations: StringBuilder?) {
+    private fun showRelations(relations: String?) {
         binding.relations.text = relations
     }
 

@@ -52,7 +52,7 @@
             app:rulerColor="@color/colorAccent"
             app:textColor="@color/colorAccent"
             app:unit="cm"
-            app:vertical="true" />
+            app:isVertical="true" />
 
         <com.book.store.stock.karafs.utility.RulerView
             android:id="@+id/horizontal"
@@ -72,6 +72,6 @@
             app:rulerColor="@color/colorAccent"
             app:textColor="@color/colorAccent"
             app:unit="cm"
-            app:vertical="false" />
+            app:isVertical="false" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

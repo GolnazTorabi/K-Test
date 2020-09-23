@@ -99,7 +99,7 @@ public class RulerView extends View {
         pointerColor = a.getColor(R.styleable.RulerView_pointerColor, 0xFF03070A);
         pointerRadius = a.getDimension(R.styleable.RulerView_pointerRadius, 40);
         pointerStrokeWidth = a.getDimension(R.styleable.RulerView_pointerStrokeWidth, 8);
-        vertical = a.getBoolean(R.styleable.RulerView_vertical, true);
+        vertical = a.getBoolean(R.styleable.RulerView_isVertical, true);
         dm = getResources().getDisplayMetrics();
         unit = new Unit(dm.ydpi);
         unit.setType(a.getInt(R.styleable.RulerView_unit, 0));
